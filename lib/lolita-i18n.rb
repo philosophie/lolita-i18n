@@ -11,7 +11,7 @@ module Lolita
   # In your lolita initializer add this line in setup block.
   #   config.i18n.store = {redis_confguration_goes_here}
   #   # or
-  #   config.i18n.store = Redis.new() # default store
+  #   config.i18n.store = Redis.new() # default store 
   module I18n
     autoload :Request, 'lolita-i18n/request'
     autoload :Exceptions, 'lolita-i18n/exceptions'
@@ -28,15 +28,7 @@ end
 Lolita.configuration.extend(LolitaI18nConfiguration)
 
 Lolita.after_setup do
-  Lolita.i18n.yaml_backend = ::I18n.backend
-  Lolita.i18n.include_modules
-  begin
-    Lolita.i18n.store.ping
-    ::I18n.backend = Lolita.i18n.initialize_chain
-  rescue Errno::ECONNREFUSED => e
-    warn "Warning: Lolita was unable to connect to Redis DB: #{e}"
-  end
-  true
+  Lolita.i18n.init
 end
 
 Lolita.i18n.load_rails!
