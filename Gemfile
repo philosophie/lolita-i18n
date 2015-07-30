@@ -3,7 +3,7 @@ source "http://rubygems.org"
 gemspec
 
 group :test do
-  gem "debugger"
+  gem "debugger", "~>1.6.8"
   gem "rails", "~>3.2.2"
   gem "cover_me", "~>1.2.0"
   gem "bson_ext", "~>1.6.2"
